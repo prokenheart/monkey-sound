@@ -68,7 +68,7 @@ function App() {
       formData.append("label", soundName);
       formData.append("place", selectedButton!.toString());
 
-      const res = await axios.post(API_URL, formData, {
+      await axios.post(API_URL, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
