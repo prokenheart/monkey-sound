@@ -65,7 +65,8 @@ function App() {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile!);
-      formData.append("label", soundName);
+      const name = (soundName != "" && soundName) ? soundName : "Tôi bị ngu vì không đặt tên cho âm thanh này";
+      formData.append("label", name);
       formData.append("place", selectedButton!.toString());
 
       await axios.post(API_URL, formData, {
