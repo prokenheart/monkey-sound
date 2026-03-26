@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button, TextField, Stack, CircularProgress } from "@mui/material";
 import axios from "axios";
 
-const API_URL = "https://rg9alncs8g.execute-api.ap-southeast-2.amazonaws.com/prod/upload";
+const API_URL =
+  "https://rg9alncs8g.execute-api.ap-southeast-2.amazonaws.com/prod/upload";
 
 const allowedExtensions = [".mp3"];
 
@@ -57,31 +58,33 @@ function App() {
     setSelectedButton(null);
     setSelectedFile(undefined);
     setSoundName("");
-  }
+  };
 
   const handleUpload = async () => {
     setIsUploading(true);
-    try{
+    try {
       const formData = new FormData();
       formData.append("file", selectedFile!);
       formData.append("label", soundName);
       formData.append("place", selectedButton!.toString());
 
-      const res = await axios.post(API_URL, formData,{
+      const res = await axios.post(API_URL, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("Upload successful! Your sound will be available at button " + selectedButton);
-    } catch(err){
+      alert(
+        "Upload successful! Your sound will be available at button " +
+          selectedButton
+      );
+    } catch (err) {
       console.error("Upload failed:", err);
       alert("Upload failed. Please try again.");
     } finally {
       setIsUploading(false);
       resetForm();
     }
-
-  }
+  };
 
   return (
     <>
@@ -131,8 +134,17 @@ function App() {
           required
           onChange={(e) => setSoundName(e.target.value)}
         />
-        <Button variant="contained" color="primary" disabled={!selectedFile?.name} onClick={handleUpload}>
-          {isUploading ? <CircularProgress size={20} /> : "Upload"}
+        <Button
+          variant={isUploading ? "outlined" : "contained"}
+          color="primary"
+          disabled={!selectedFile?.name}
+          onClick={handleUpload}
+        >
+          {isUploading ? (
+            <CircularProgress size={20} color="success" />
+          ) : (
+            "Upload"
+          )}
         </Button>
       </Stack>
     </>
