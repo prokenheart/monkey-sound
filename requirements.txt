@@ -1,9 +1,0 @@
-axios
-react
-react-dom
-typescript
-@types/react
-@types/react-dom
-@mui/material
-@emotion/react
-@emotion/styled
