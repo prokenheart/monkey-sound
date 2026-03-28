@@ -68,24 +68,34 @@ function App() {
   const [prizeStyle, setPrizeStyle] = useState<string | null>(null);
 
   const mapingPrizeToStyle = (option: number) => {
-    switch (option){
-      case 0: return "primary";
-      case 1: return "success";
-      case 2: return "secondary";
-      case 3: return "danger";
-      default: return "primary";
-    } 
-  }
+    switch (option) {
+      case 0:
+        return "primary";
+      case 1:
+        return "success";
+      case 2:
+        return "secondary";
+      case 3:
+        return "danger";
+      default:
+        return "primary";
+    }
+  };
 
   const mappingPrizeToButton = (option: number) => {
-    switch (option){
-      case 0: return "#5865F2";
-      case 1: return "#248046";
-      case 2: return "#4E5058";
-      case 3: return "#DA373C";
-      default: return "#5865F2";
-    } 
-  }
+    switch (option) {
+      case 0:
+        return "#5865F2";
+      case 1:
+        return "#248046";
+      case 2:
+        return "#4E5058";
+      case 3:
+        return "#DA373C";
+      default:
+        return "#5865F2";
+    }
+  };
 
   const getWeightedIndex = (data: dataType[]) => {
     const total = data.reduce((sum, item) => sum + item.weight, 0);
@@ -179,7 +189,12 @@ function App() {
           </Button>
         ))}
       </div>
-      <Stack direction={"row"} spacing={4} justifyContent={"center"} alignItems={"center"}>
+      <Stack
+        direction={"row"}
+        spacing={4}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
         <Stack
           direction={"column"}
           spacing={2}
@@ -236,13 +251,18 @@ function App() {
           </Button>
         </Stack>
         <Button
-          variant={isUploading ? "outlined" : "contained"}
-          sx = {{backgroundColor: prizeStyle ? mappingPrizeToButton(prizeIndex) : "primary"}}
-          disabled={!selectedFile?.name || isSpinning || !prizeStyle}
+          variant={"contained"}
+          sx={{
+            minWidth: 120,
+            backgroundColor: prizeStyle
+              ? mappingPrizeToButton(prizeIndex)
+              : "primary",
+          }}
+          disabled={!selectedFile?.name || isSpinning || !prizeStyle || isUploading}
           onClick={handleUpload}
         >
           {isUploading ? (
-            <CircularProgress size={20} color="success" />
+            <CircularProgress size={30} color="success" />
           ) : (
             "Upload"
           )}
