@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Button, TextField, Stack, CircularProgress } from "@mui/material";
 import axios from "axios";
 
-const API_URL =
-  "https://rg9alncs8g.execute-api.ap-southeast-2.amazonaws.com/prod/upload";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const allowedExtensions = [".mp3"];
 
