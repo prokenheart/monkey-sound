@@ -134,6 +134,7 @@ function App() {
           helperText="Example: Ăn Mày Quá Khứ"
           required
           onChange={(e) => setSoundName(e.target.value)}
+          value={soundName}
         />
         <Button
           variant={isUploading ? "outlined" : "contained"}
