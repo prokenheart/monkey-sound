@@ -3,8 +3,8 @@ import { Button, TextField, Stack, CircularProgress } from "@mui/material";
 import axios from "axios";
 import WeightedWheel from "./WeightedWheel";
 
-// const API_URL = import.meta.env.VITE_API_URL;
-const API_URL = "http://127.0.0.1:5132/upload";
+const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = "http://127.0.0.1:5132/upload";
 const data = [
   { option: "primary", weight: 60 },
   { option: "success", weight: 25 },
