@@ -7,9 +7,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 // const API_URL = "http://127.0.0.1:5132/upload";
 const data = [
   { option: "primary", weight: 60 },
-  { option: "success", weight: 25 },
+  { option: "success", weight: 27 },
   { option: "secondary", weight: 10 },
-  { option: "danger", weight: 5 },
+  { option: "danger", weight: 3 },
 ];
 
 type dataType = {
