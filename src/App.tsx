@@ -6,10 +6,10 @@ import WeightedWheel from "./WeightedWheel";
 const API_URL = import.meta.env.VITE_API_URL;
 // const API_URL = "http://127.0.0.1:5132/upload";
 const data = [
-  { option: "primary", weight: 60 },
-  { option: "success", weight: 27 },
+  { option: "primary", weight: 64 },
+  { option: "success", weight: 25 },
   { option: "secondary", weight: 10 },
-  { option: "danger", weight: 3 },
+  { option: "danger", weight: 1 },
 ];
 
 type dataType = {
