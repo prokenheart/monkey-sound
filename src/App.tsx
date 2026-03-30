@@ -202,7 +202,7 @@ function App() {
           width={"400px"}
         >
           <FilePicker
-            isDisabled={selectedButton === null}
+            isDisabled={selectedButton === null || isUploading || isSpinning}
             onSelect={(file) => {
               handlePickFile(file);
             }}
