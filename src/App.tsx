@@ -37,7 +37,19 @@ const FilePicker = ({ isDisabled, onSelect }: FilePickerProps) => {
       return;
     }
 
-    onSelect(file);
+    const audio = new Audio();
+    const url = URL.createObjectURL(file);
+
+    audio.src = url;
+    audio.onloadedmetadata = () => {
+      if (audio.duration > 30) {
+        alert("Audio duration must be less than 30 seconds.");
+        e.target.value = "";
+        return;
+      }
+      onSelect(file);
+    };
+
     e.target.value = "";
   };
 
