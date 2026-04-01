@@ -57,6 +57,7 @@ const FilePicker = ({ isDisabled, onSelect }: FilePickerProps) => {
 
 function App() {
   const buttons = Array.from({ length: 25 }, (_, i) => i + 1);
+  const buttons2 = Array.from({ length: 25 }, (_, i) => i + 26);
   const [selectedButton, setSelectedButton] = useState<number | null>(null);
   const [selectedFile, setSelectedFile] = useState<File>();
   const [soundName, setSoundName] = useState<string>("");
@@ -66,6 +67,7 @@ function App() {
   const [prizeIndex, setPrizeIndex] = useState(0);
   const [isSpinning, setIsSpinning] = useState<boolean>(false);
   const [prizeStyle, setPrizeStyle] = useState<string | null>(null);
+  const [view, setView] = useState<number>(1);
 
   const mapingPrizeToStyle = (option: number) => {
     switch (option) {
@@ -163,6 +165,25 @@ function App() {
 
   return (
     <>
+      <Stack
+        direction={"row"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        mt={4}
+      >
+        <Button
+          variant={view === 1 ? "contained" : "outlined"}
+          onClick={() => setView(1)}
+        >
+          View 1
+        </Button>
+        <Button
+          variant={view === 2 ? "contained" : "outlined"}
+          onClick={() => setView(2)}
+        >
+          View 2
+        </Button>
+      </Stack>
       <div
         style={{
           display: "grid",
@@ -173,21 +194,38 @@ function App() {
           margin: "auto",
         }}
       >
-        {buttons.map((num) => (
-          <Button
-            key={num}
-            variant="contained"
-            onClick={() => setSelectedButton(num)}
-            style={{
-              backgroundColor: selectedButton === num ? "red" : "",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            Button {num}
-          </Button>
-        ))}
+        {view === 1 &&
+          buttons.map((num) => (
+            <Button
+              key={num}
+              variant="contained"
+              onClick={() => setSelectedButton(num)}
+              style={{
+                backgroundColor: selectedButton === num ? "red" : "",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              Button {num}
+            </Button>
+          ))}
+        {view === 2 &&
+          buttons2.map((num) => (
+            <Button
+              key={num}
+              variant="contained"
+              onClick={() => setSelectedButton(num)}
+              style={{
+                backgroundColor: selectedButton === num ? "red" : "",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              Button {num}
+            </Button>
+          ))}
       </div>
       <Stack
         direction={"row"}
@@ -258,7 +296,9 @@ function App() {
               ? mappingPrizeToButton(prizeIndex)
               : "primary",
           }}
-          disabled={!selectedFile?.name || isSpinning || !prizeStyle || isUploading}
+          disabled={
+            !selectedFile?.name || isSpinning || !prizeStyle || isUploading
+          }
           onClick={handleUpload}
         >
           {isUploading ? (
